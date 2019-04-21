@@ -20,7 +20,7 @@ target_file="$1"
 shift
 
 test "${target_file}" == - && {
-    exec $*
+    exec sh -c "$*"
 }
 
 test -f "${target_file}" || {
