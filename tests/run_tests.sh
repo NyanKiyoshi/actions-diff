@@ -5,7 +5,7 @@ SUITE_PATH="${HERE}/suite"
 ENTRY_POINT_PATH="${HERE}/../entrypoint.sh"
 
 test -d "${SUITE_PATH}" \
-    || git clone --depth=5 --branch=master git@github.com:kward/shunit2.git "${SUITE_PATH}" \
+    || git clone --depth=5 --branch=master https://github.com/kward/shunit2.git "${SUITE_PATH}" \
     || exit $?
 
 entrypoint() {

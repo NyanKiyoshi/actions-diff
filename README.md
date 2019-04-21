@@ -1,4 +1,4 @@
-# actions-diff
+# actions-diff [![Build Status](https://www.travis-ci.org/NyanKiyoshi/actions-diff.svg?branch=master)](https://www.travis-ci.org/NyanKiyoshi/actions-diff)
 Rebuild a file to the standard output and compares it to a given file. The aim
 is to ensure that a given file definitions are up to date, thus were rebuilt
 with the latest information.
