@@ -23,3 +23,12 @@ action "Build GraphQL Schema" {
   args = "- rm -rf /"
 }
 ```
+
+## Development
+### Running Tests
+Just run [`./tests/run_tests.sh`](tests/run_tests.sh), note that 
+it will install dependencies.
+
+### Testing Actions Locally
+You can use [`act`](https://github.com/nektos/act) 
+to test your changes locally.

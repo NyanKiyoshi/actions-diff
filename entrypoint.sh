@@ -1,7 +1,7 @@
 #!/bin/bash
 
 test $# -gt 1 || {
-    echo "Usage: $0 <path> command ..." >&2
+    echo "Usage: $(basename $0) <path> command ..." >&2
     exit 1
 }
 
@@ -31,7 +31,6 @@ test -f "${target_file}" || {
 sh -c "$*" | {
     diff "${target_file}" - \
     || {
-        echo diff
         echo 'Error: the file is out of date' >&2
         exit 1
     }
