@@ -8,10 +8,18 @@ with the latest information.
 NyanKiyoshi/actions-diff <path> command ...
 ```
 
-## Example
+## Examples
 ```
 action "Build GraphQL Schema" {
   uses = "NyanKiyoshi/actions-diff"
   args = "graphql/schema.graphql npm run build-schema"
+}
+```
+
+To run a command without diff inside the container, do:
+```
+action "Build GraphQL Schema" {
+  uses = "NyanKiyoshi/actions-diff"
+  args = "- rm -rf /"
 }
 ```

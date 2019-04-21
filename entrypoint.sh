@@ -8,19 +8,31 @@ test $# -gt 1 || {
 set -e
 
 VENV_NAME=${VENV_DIR:=venv}
+VENV_PATH="${GITHUB_WORKSPACE:-$HOME}/${VENV_NAME}"
 
-if ! [ -e "${GITHUB_WORKSPACE}/${VENV_NAME}" ]; then
-    python -m venv "${GITHUB_WORKSPACE}/${VENV_NAME}"
+if ! [ -e "${VENV_PATH}" ]; then
+    python -m venv "${VENV_PATH}"
 fi
 
-source "${GITHUB_WORKSPACE}/${VENV_NAME}/bin/activate"
+source "${VENV_PATH}/bin/activate"
 target_file="$1"
 
 shift
 
-diff=`sh -c "$*" | diff "${target_file}" -` || exit $?
-test -z "$diff" || {
-    echo diff >&2
-    echo 'Error: the file is out of date'
+test "${target_file}" == - && {
+    exec $*
+}
+
+test -f "${target_file}" || {
+    echo "${target_file} no such file or invalid file" >&2
     exit 1
+}
+
+sh -c "$*" | {
+    diff "${target_file}" - \
+    || {
+        echo diff
+        echo 'Error: the file is out of date' >&2
+        exit 1
+    }
 }
